@@ -41,8 +41,8 @@ function App() {
       <Header darkMode={darkMode} theme={theme}/>
       <BrowserRouter>
         <Routes>
-            <Route path="/" element={<Home data={inv} deleteInv={deleteInv} />} />
-            <Route path="/addinvoice" element={<AddInvoice setNewData={setNewData} />} />
+            <Route path="https://mishosb.com/" element={<Home data={inv} deleteInv={deleteInv} />} />
+            <Route path="https://mishosb.com/addinvoice" element={<AddInvoice setNewData={setNewData} />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>

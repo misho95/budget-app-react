@@ -9,16 +9,19 @@ function FilterBar({data, setFilter}){
     
     const filterInvoice = (e) => {
         e.preventDefault();
-        const dat = date.current.value;
-        const cat = category.current.value;
-        const minVal = min.current.value;
-        const maxVal = max.current.value;
 
-        const filterdData = data.filter( (inv) => {
-            if(dat === inv.date || cat === inv.category || minVal < inv.amount || maxVal > inv.amount) return inv;
-        })
+const searchDate = date.current.value;
+const searchCategory = category.current.value;
+const minValue = min.current.value;
+const maxValue = max.current.value;
 
-        setFilter(filterdData);
+const filteredData = data.filter(item => {
+  const isDateMatched = !searchDate || item.date === searchDate;
+  const isCategoryMatched = !searchCategory || item.category.toLowerCase() === searchCategory.toLowerCase();
+  const isAmountMatched = (!minValue || +item.amount > minValue) && (!maxValue || +item.amount < maxValue);
+  return isDateMatched && isCategoryMatched && isAmountMatched;
+});
+        setFilter(filteredData);
     }
 
     return(
@@ -28,7 +31,7 @@ function FilterBar({data, setFilter}){
                     <input ref={date} type="date" className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-300 dark:border-gray-600 rounded-md p-1 min-w-fit"/>
 
                     <select ref={category} className="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 border-2 border-gray-300 dark:border-gray-600 rounded-md p-1">
-                        <option>Any</option>
+                        <option></option>
                         <option>shopping</option>
                         <option>gym</option>
                         <option>family</option>

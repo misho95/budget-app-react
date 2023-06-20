@@ -14,35 +14,11 @@ function FilterBar({data, setFilter}){
         const minVal = min.current.value;
         const maxVal = max.current.value;
 
-        let filterData = data;
+        const filterdData = data.filter( (inv) => {
+            if(dat === inv.date || cat === inv.category || minVal < inv.amount || maxVal > inv.amount) return inv;
+        })
 
-        if(dat){
-            filterData = filterData.filter( (inv) => {
-                if(dat === inv.date) return inv;
-            })
-        }
-
-            if(cat){
-                filterData = filterData.filter( (inv) => {
-                    if(cat === inv.category) return inv;
-                })
-            }
-
-            if(minVal){
-                filterData = filterData.filter( (inv) => {
-                    if(minVal < +inv.amount) return inv;
-                })
-            }
-
-            if(maxVal){
-                filterData = filterData.filter( (inv) => {
-                    if(maxVal > +inv.amount) return inv;
-                })
-            }
-     
-
-            console.log(filterData);
-        setFilter(filterData);
+        setFilter(filterdData);
     }
 
     return(

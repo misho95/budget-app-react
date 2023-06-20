@@ -9,19 +9,39 @@ function FilterBar({data, setFilter}){
     
     const filterInvoice = (e) => {
         e.preventDefault();
-        const cat = category.current.value;
         const dat = date.current.value;
+        const cat = category.current.value;
         const minVal = min.current.value;
         const maxVal = max.current.value;
 
-        const filterData = data.filter( (inv) => {
-            if(dat && dat === inv.date ||
-                cat && cat === inv.category ||
-                minVal && minVal < +inv.amount ||
-                maxVal && maxVal > +inv.amount
-                ) return inv;
-        })
+        let filterData = data;
 
+        if(dat){
+            filterData = filterData.filter( (inv) => {
+                if(dat === inv.date) return inv;
+            })
+        }
+
+            if(cat){
+                filterData = filterData.filter( (inv) => {
+                    if(cat === inv.category) return inv;
+                })
+            }
+
+            if(minVal){
+                filterData = filterData.filter( (inv) => {
+                    if(minVal < +inv.amount) return inv;
+                })
+            }
+
+            if(maxVal){
+                filterData = filterData.filter( (inv) => {
+                    if(maxVal > +inv.amount) return inv;
+                })
+            }
+     
+
+            console.log(filterData);
         setFilter(filterData);
     }
 

@@ -42,7 +42,7 @@ function addinvoice( {setNewData} ){
         if(income.current.checked){
             category.current.innerHTML = '<option>invoice</option><option>other</option>';
         } else {
-            category.current.innerHTML = ' <option>shopping</option><option>gym</option><option>family</option><option>invoice</option><option>other</option>';
+            category.current.innerHTML = ' <option>shopping</option><option>gym</option><option>family</option><option>other</option>';
         }
     }
 
